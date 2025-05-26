@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Iframe</title>
+</head>
+
+<body>
+    <h3>Iframe Form</h3>
+    <input style="border: 1px solid #ccc;" type="text" id="inputBox" placeholder="Type something..." />
+    <button onclick="sendMessage()">Send to Flutter</button>
+
+    <script>
+        window.addEventListener("message", (event) => {
+            console.log(event);
+            if (event.data.type === "updateText") {
+                document.getElementById("inputBox").value = event.data.message;
+            }
+        });
+
+        function sendMessage() {
+            const value = document.getElementById("inputBox").value;
+            document.getElementById("inputBox").value = '';
+            parent.postMessage({ type: "fromIframe", message: value }, "*");
+        }
+
+        
+        window.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+    </script>
+</body>
+
+</html>

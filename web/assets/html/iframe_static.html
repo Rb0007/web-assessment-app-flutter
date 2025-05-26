@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Static Iframe</title>
+</head>
+
+<body>
+    <h3>Static Content Iframe</h3>
+    <p id="content">Static content</p>
+
+    <script>
+        window.addEventListener("message", (event) => {
+            if (event.data.type === "updateStaticContent") {
+                document.getElementById("content").innerText = event.data.message;
+            }
+        });
+
+        function sendStaticMessage() {
+            parent.postMessage({ type: "fromIframe", message: "Static iframe says hello ritesh!" }, "*");
+        }
+
+        sendStaticMessage();
+    </script>
+</body>
+
+</html>
