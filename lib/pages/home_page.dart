@@ -37,12 +37,12 @@ class HomePage extends StatelessWidget {
         ],
       ),
       tablet: Scaffold(
-        appBar: AppBar(title: const Text('Flutter Web Dashboard Tablet')),
+        appBar: AppBar(title: const Text('Flutter Web Dashboard')),
         drawer: const DrawerNav(),
         body: _buildCurrentPage(currentPage),
       ),
       mobile: Scaffold(
-        appBar: AppBar(title: const Text('Flutter Web Dashboard Mobile')),
+        appBar: AppBar(title: const Text('Flutter Web Dashboard')),
         body: _buildCurrentPage(currentPage),
         bottomNavigationBar: const BottomNav(),
       ),

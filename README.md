@@ -53,5 +53,3 @@ Desktop: ≥ 1024px
 
 The dashboard displays a chart using dummy data.
 library used - fl_chart
-
-

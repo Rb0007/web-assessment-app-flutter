@@ -38,26 +38,29 @@ class DrawerNav extends StatelessWidget {
               child: ListView(
                 children: _navItems.map((item) {
                   final selected = activePage == item.page;
-                  return ListTile(
-                    leading: Icon(
-                      item.icon,
-                      color: selected ? Colors.white : Colors.grey.shade300,
-                    ),
-                    title: Text(
-                      item.title,
-                      style: TextStyle(
-                        color: selected ? Colors.white : Colors.grey.shade100,
+                  return SizedBox(
+                    width: double.infinity, // Ensures full tap area
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
                       ),
+                      leading: Icon(
+                        item.icon,
+                        color: selected ? Colors.white : Colors.grey.shade300,
+                      ),
+                      title: Text(
+                        item.title,
+                        style: TextStyle(
+                          color: selected ? Colors.white : Colors.grey.shade100,
+                        ),
+                      ),
+                      selected: selected,
+                      selectedTileColor: Colors.amber.withValues(alpha: 0.4),
+                      onTap: () {
+                        appState.changePage(item.page);
+                        Navigator.pop(context); // Close drawer
+                      },
                     ),
-                    selected: selected,
-                    selectedTileColor: selected
-                        ? Colors.amber
-                        : Colors.blueGrey.shade700,
-                    // hoverColor: Colors.blueGrey.shade600,
-                    onTap: () {
-                      appState.changePage(item.page);
-                      Navigator.pop(context); // Close drawer on selection
-                    },
                   );
                 }).toList(),
               ),

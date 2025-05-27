@@ -72,6 +72,28 @@ class LineChartWidget extends StatelessWidget {
                       ),
                     ),
                   ),
+                  lineTouchData: LineTouchData(
+                    touchTooltipData: LineTouchTooltipData(
+                      fitInsideHorizontally: true,
+                      fitInsideVertically: true,
+                      tooltipPadding: const EdgeInsets.all(8),
+                      tooltipMargin: 8,
+                      getTooltipItems: (touchedSpots) {
+                        return touchedSpots.map((spot) {
+                          final index = spot.x.toInt();
+                          final label =
+                              (index >= 0 && index < userActivityData.length)
+                              ? userActivityData[index].label
+                              : '';
+                          return LineTooltipItem(
+                            '$label\n${spot.y.toStringAsFixed(1)}',
+                            const TextStyle(color: Colors.white),
+                          );
+                        }).toList();
+                      },
+                    ),
+                    handleBuiltInTouches: true,
+                  ),
                   lineBarsData: [
                     LineChartBarData(
                       spots: userActivityData
