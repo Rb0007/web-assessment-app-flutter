@@ -76,6 +76,7 @@ class _IframePageState extends State<IframePage> {
         'type': 'updateText',
         'message': message,
       }, html.window.location.origin);
+      provider.updateReceivedMessage(message);
     }
   }
 
